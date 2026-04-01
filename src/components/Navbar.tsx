@@ -23,7 +23,6 @@ export default function Navbar() {
     { name: '서비스', href: '#services' },
     { name: '성과', href: '#stats' },
     { name: '포트폴리오', href: '#portfolio' },
-    { name: '문의하기', href: '#contact' },
   ];
 
   return (
@@ -55,17 +54,12 @@ export default function Navbar() {
             </Link>
           )}
 
-          {user ? (
-            <button onClick={logout} className="flex items-center gap-2 text-sm font-bold text-text opacity-60 hover:opacity-100 transition-opacity">
-              <LogOut size={16} />
-              <span>로그아웃</span>
-            </button>
-          ) : (
-            <button onClick={loginWithGoogle} className="flex items-center gap-2 text-sm bg-primary text-white px-6 py-2.5 rounded-full hover:bg-primary/90 transition-all font-bold shadow-lg shadow-primary/20">
-              <LogIn size={16} />
-              <span>로그인</span>
-            </button>
-          )}
+          <button 
+            onClick={() => window.location.href = '#contact'}
+            className="px-6 py-2.5 rounded-full bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-all shadow-lg shadow-primary/20"
+          >
+            상담 신청
+          </button>
         </div>
 
         {/* Mobile Toggle */}
@@ -100,17 +94,15 @@ export default function Navbar() {
                   <span>관리자 대시보드</span>
                 </Link>
               )}
-              {user ? (
-                <button onClick={logout} className="flex items-center gap-2 text-text opacity-60 font-bold">
-                  <LogOut size={20} />
-                  <span>로그아웃</span>
-                </button>
-              ) : (
-                <button onClick={loginWithGoogle} className="flex items-center gap-2 bg-primary text-white px-6 py-4 rounded-2xl justify-center font-bold shadow-lg shadow-primary/20">
-                  <LogIn size={20} />
-                  <span>로그인</span>
-                </button>
-              )}
+              <button 
+                onClick={() => {
+                  setIsOpen(false);
+                  window.location.href = '#contact';
+                }}
+                className="w-full bg-primary text-white px-6 py-4 rounded-2xl justify-center font-bold shadow-lg shadow-primary/20"
+              >
+                상담 신청하기
+              </button>
             </div>
           </motion.div>
         )}

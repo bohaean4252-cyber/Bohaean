@@ -29,7 +29,7 @@ export default function Hero() {
             <span className="text-primary">병원의 성장을 디자인하다</span>
           </h1>
           <p className="max-w-2xl mx-auto text-lg md:text-xl text-text-muted mb-12 font-medium leading-relaxed">
-            {siteConfig?.heroSubtitle || '로고 디자인부터 의료 컨설팅, 경영 전략까지. 보해안은 데이터와 디자인으로 병원의 미래를 제시합니다.'}
+            {siteConfig?.heroSubtitle || '경영 지원부터 의료 컨설팅, 경영 전략까지. 보해안은 데이터와 디자인으로 병원의 미래를 제시합니다.'}
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

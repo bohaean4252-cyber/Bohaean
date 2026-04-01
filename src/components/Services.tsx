@@ -15,8 +15,8 @@ export default function Services() {
   const defaultServices = [
     {
       id: '1',
-      title: '의료 로고 디자인',
-      description: '병원의 정체성과 신뢰감을 담은 프리미엄 로고를 제작합니다. 단순한 디자인을 넘어 의료진의 철학을 시각화합니다.',
+      title: '의료 경영 지원',
+      description: '병원의 체계적인 운영과 지속 가능한 성장을 위한 경영 지원 솔루션을 제공합니다. 단순한 조언을 넘어 실질적인 변화를 이끌어냅니다.',
       icon: 'palette'
     },
     {

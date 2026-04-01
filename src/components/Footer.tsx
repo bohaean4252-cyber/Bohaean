@@ -13,7 +13,7 @@ export default function Footer() {
               <span className="text-xs font-light tracking-widest opacity-50 uppercase ml-2">Bohaean</span>
             </Link>
             <p className="max-w-sm text-white/40 font-light leading-relaxed">
-              프리미엄 의료 컨설팅 및 로고 디자인 전문 브랜드. 
+              프리미엄 의료 컨설팅 및 경영 지원 전문 브랜드. 
               병원의 전문성을 시각화하고 성장을 가속화하는 최상의 파트너가 되어드립니다.
             </p>
           </div>

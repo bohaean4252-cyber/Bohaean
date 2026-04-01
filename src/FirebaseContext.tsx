@@ -63,7 +63,7 @@ export const FirebaseProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         // Default config
         setSiteConfig({
           heroTitle: "보해안 (Bohaean)",
-          heroSubtitle: "프리미엄 의료 컨설팅 & 로고 디자인",
+          heroSubtitle: "프리미엄 의료 컨설팅 & 경영 지원",
           accentColor: "#0070f3",
           contactEmail: "bohaean4252@gmail.com",
           instagramUrl: "#",

@@ -8,28 +8,57 @@ export default function Portfolio() {
   const [generatedImages, setGeneratedImages] = useState<Record<string, string>>({});
 
   const defaultPortfolio = [
-    { id: '1', title: '서울 소재 한방병원', category: 'Logo Design', prompt: 'Modern hospital architecture exterior, glass and steel, daytime, blue sky, professional photography' },
-    { id: '2', title: '광주 소재 치과', category: 'Logo Design', prompt: 'Minimalist dental clinic interior, white and bright, modern medical equipment, clean aesthetic' },
-    { id: '3', title: '광주 소재 한방병원', category: 'Branding', prompt: 'Traditional Korean medicine hospital interior, warm wood textures, herbal medicine cabinets, cozy atmosphere' },
+    { 
+      id: '1', 
+      title: '서울 소재 프리미엄 한방병원', 
+      category: 'Management Support', 
+      prompt: 'Modern hospital architecture exterior, glass and steel, daytime, blue sky, professional photography, high-end medical building',
+      fallback: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=800&h=600'
+    },
+    { 
+      id: '2', 
+      title: '강남 소재 대형 치과', 
+      category: 'Interior Design', 
+      prompt: 'Minimalist dental clinic interior, white and bright, modern medical equipment, clean aesthetic, luxury dental office',
+      fallback: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=800&h=600'
+    },
+    { 
+      id: '3', 
+      title: '광주 소재 전문 한방병원', 
+      category: 'Total Consulting', 
+      prompt: 'Traditional Korean medicine hospital interior, warm wood textures, herbal medicine cabinets, cozy atmosphere, modern clinic',
+      fallback: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=800&h=600'
+    },
   ];
 
   useEffect(() => {
     const loadImages = async () => {
+      const itemsToLoad = portfolio.length > 0 ? portfolio : defaultPortfolio;
       const images: Record<string, string> = {};
-      for (const item of defaultPortfolio) {
-        // Use a unique timestamp to force fresh generation and avoid caching
-        const timestamp = Date.now();
-        const url = await generateHospitalImage(`${item.prompt}, unique_id: ${item.id}_${timestamp}`);
-        images[item.id] = url;
+      
+      for (const item of itemsToLoad) {
+        if (!generatedImages[item.id]) {
+          try {
+            const timestamp = Date.now();
+            const searchPrompt = (item as any).prompt || `${item.title} hospital medical facility`;
+            const url = await generateHospitalImage(`${searchPrompt}, unique_id: ${item.id}_${timestamp}`);
+            images[item.id] = url;
+          } catch (err) {
+            console.error(`Failed to generate image for ${item.id}:`, err);
+          }
+        }
       }
-      setGeneratedImages(images);
+      
+      if (Object.keys(images).length > 0) {
+        setGeneratedImages(prev => ({ ...prev, ...images }));
+      }
     };
     loadImages();
-  }, []);
+  }, [portfolio]);
 
-  const displayPortfolio = portfolio.length > 0 ? portfolio : defaultPortfolio.map(item => ({
+  const displayPortfolio = (portfolio.length > 0 ? portfolio : defaultPortfolio).map(item => ({
     ...item,
-    imageUrl: generatedImages[item.id] || `https://picsum.photos/seed/${item.id}_hospital/800/600`
+    imageUrl: (item as any).imageUrl || generatedImages[item.id] || (item as any).fallback || `https://images.unsplash.com/photo-1586773860418-d374a551f393?auto=format&fit=crop&q=80&w=800&h=600`
   }));
 
   return (
