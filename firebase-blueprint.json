@@ -1,0 +1,73 @@
+{
+  "entities": {
+    "SiteConfig": {
+      "title": "Site Configuration",
+      "description": "Global settings for the website",
+      "type": "object",
+      "properties": {
+        "heroTitle": { "type": "string" },
+        "heroSubtitle": { "type": "string" },
+        "accentColor": { "type": "string" },
+        "contactEmail": { "type": "string" },
+        "instagramUrl": { "type": "string" },
+        "blogUrl": { "type": "string" }
+      },
+      "required": ["heroTitle", "heroSubtitle"]
+    },
+    "Service": {
+      "title": "Service",
+      "description": "A service offered by Bohaean",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "icon": { "type": "string" }
+      },
+      "required": ["title", "description"]
+    },
+    "Stat": {
+      "title": "Performance Stat",
+      "description": "A performance metric to display",
+      "type": "object",
+      "properties": {
+        "label": { "type": "string" },
+        "value": { "type": "number" },
+        "suffix": { "type": "string" },
+        "description": { "type": "string" }
+      },
+      "required": ["label", "value"]
+    },
+    "PortfolioItem": {
+      "title": "Portfolio Item",
+      "description": "A project in the portfolio",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "category": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "description": { "type": "string" }
+      },
+      "required": ["title", "category", "imageUrl"]
+    },
+    "Message": {
+      "title": "Contact Message",
+      "description": "A message from a user via the contact form",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "subject": { "type": "string" },
+        "content": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email", "content"]
+    }
+  },
+  "firestore": {
+    "/config/main": { "schema": "SiteConfig", "description": "Global site configuration" },
+    "/services/{serviceId}": { "schema": "Service", "description": "List of services" },
+    "/stats/{statId}": { "schema": "Stat", "description": "Performance metrics" },
+    "/portfolio/{itemId}": { "schema": "PortfolioItem", "description": "Portfolio items" },
+    "/messages/{messageId}": { "schema": "Message", "description": "Contact form submissions" }
+  }
+}
